@@ -1,13 +1,3 @@
-function dataForecast(response) {
-  let forecastElement = document.querySelector("#data-forecast");
-  console.log(dataForecast.data.daily);
-}
-
-function forecastCity(city) {
-  let apiUrLF = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrLF).then(dataForecast);
-}
-
 function renewData(response) {
   let temperatureElement = document.querySelector("#weather-temp");
   let temperature = Math.round(response.data.temperature.current);
@@ -58,6 +48,7 @@ function formatDate(date) {
 
 function searchCity(city) {
   let apiKey = "04a6b97ba438oct66060d748685ff445";
+
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(renewData);
 }
