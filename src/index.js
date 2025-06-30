@@ -1,8 +1,51 @@
 function renewData(response) {
   let temperatureElement = document.querySelector("#weather-temp");
+  let temperature = Math.round(response.data.temperature.current);
+
   let cityElement = document.querySelector("#city");
+
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+
+  let descriptionElement = document.querySelector("#condition");
+  let description = response.data.condition.description;
+
+  let humidityElement = document.querySelector("#current-humidity");
+  let humidity = response.data.temperature.humidity;
+
+  let windElement = document.querySelector("#current-wind");
+  let wind = response.data.wind.speed;
+
+  console.log(response.data);
+
   cityElement.innerHTML = response.data.city;
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+
+  timeElement.innerHTML = formatDate(date);
+  descriptionElement.innerHTML = description;
+  humidityElement.innerHTML = `${humidity}%`;
+  windElement.innerHTML = `${wind}km/h`;
+  temperatureElement.innerHTML = temperature;
+}
+
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
