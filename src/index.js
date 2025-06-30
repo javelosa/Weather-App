@@ -1,3 +1,13 @@
+function dataForecast(response) {
+  let forecastElement = document.querySelector("#data-forecast");
+  console.log(dataForecast.data.daily);
+}
+
+function forecastCity(city) {
+  let apiUrLF = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrLF).then(dataForecast);
+}
+
 function renewData(response) {
   let temperatureElement = document.querySelector("#weather-temp");
   let temperature = Math.round(response.data.temperature.current);
@@ -15,8 +25,6 @@ function renewData(response) {
 
   let windElement = document.querySelector("#current-wind");
   let wind = response.data.wind.speed;
-
-  console.log(response.data);
 
   cityElement.innerHTML = response.data.city;
 
