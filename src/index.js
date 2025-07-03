@@ -59,7 +59,29 @@ function goSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml += `
+            <div class="forecast">
+               <div class="forecast-day">${day}</div>
+               <div class="forecast-icon">🌧️</div>
+               <div class="forecast-temps">
+                 <span class="forecast-temp-max"><strong>20</strong></span>
+                 <span class="forecast-temp-min">19</span>
+               </div>
+            </div>
+             `;
+  });
+
+  let forecastElement = document.querySelector("#data-forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", goSearchSubmit);
 
 searchCity("Barcelona");
+displayForecast();
